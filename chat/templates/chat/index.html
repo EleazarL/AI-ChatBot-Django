@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'chat/style.css' %}"/>
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+    
+   <h1>Chatbot ITTG</h1>
+    
+    <div>
+        
+        <div id="chatbot">
+            <p class="botText"><span>Hola, bienvenido al sistema ITTG por Eleazar Landeta</span></p>
+        </div>
+        
+        <div id="userInput">
+            <input type="text" id="textInput" name="userMessage" placeholder="¿Tienes alguna pregunta?..."/>
+            <input type="submit" value="Enviar" id="buttonInput"/>
+        </div>
+        
+    </div>
+    
+    <script>
+        function getUserResponse() {
+            var userText = $('#textInput').val();
+            var userHTML = "<p class='userText'>Usuario: <span>" + userText + "</span></p>";
+            $('#textInput').val("");
+            
+            $('#chatbot').append(userHTML);
+
+            //se pone chat dado que es el main
+            //aqui enviamos el mensaje con el kit de django
+            //data esta recibiendo del metodo la pregunta
+            $.get('chat/getResponse',{userMessage:userText}).done(function(data){
+               
+                //esta variable sirve  para que guarde el mensaje de la data 
+                var returnedMessage = "<p class='botText'>Chatbot: <span>" + data + "</span></p>";                //mostramos en el chatbotx el texto que contiene returnedMessage
+                $('#chatbot').append(returnedMessage);
+                
+            })
+        }
+
+
+        
+        $('#buttonInput').click(function () {
+            getUserResponse();
+        })
+    </script>
+    
+</body>
+</html>
