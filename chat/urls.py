@@ -7,4 +7,3 @@ urlpatterns = [
     
     #ruta para obtener la respuestas 
     path('chat/getResponse', views.getResponse, name='getResponse'),]
-

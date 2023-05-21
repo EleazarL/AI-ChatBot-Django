@@ -38,20 +38,21 @@
             
             $('#chatbot').append(userHTML);
 
-            //se pone chat dado que es el main
-            //aqui enviamos el mensaje con el kit de django
-            //data esta recibiendo del metodo la pregunta
             $.get('chat/getResponse',{userMessage:userText}).done(function(data){
                
-                //esta variable sirve  para que guarde el mensaje de la data 
-                var returnedMessage = "<p class='botText'>Chatbot: <span>" + data + "</span></p>";                //mostramos en el chatbotx el texto que contiene returnedMessage
+                var returnedMessage = "<p class='botText'>Chatbot: <span>" + data + "</span></p>";
                 $('#chatbot').append(returnedMessage);
                 
             })
         }
 
+        // Controlador de eventos para la tecla "Enter"
+        $('#textInput').keypress(function(event) {
+            if (event.which === 13) { // Código de tecla para "Enter"
+                getUserResponse();
+            }
+        });
 
-        
         $('#buttonInput').click(function () {
             getUserResponse();
         })
