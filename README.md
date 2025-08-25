@@ -85,4 +85,4 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para má
 
 **Eleazar Landeta Esteva**
 - GitHub: [@EleazarL](https://github.com/EleazarL)
-- Email: tu-email
+- eleazarlandetae@gmail.com
